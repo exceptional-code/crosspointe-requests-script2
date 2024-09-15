@@ -93,7 +93,8 @@ function newCard(element) {
     card.style.position = 'absolute';
     card.style.width = '90%';
     card.style.height = '90%';
-    card.style.fontSize = '1.6rem';
+    // turned this off to see how thechurchco's auto sizing system for .row-column p, h6 adjusts it
+    // card.style.fontSize = '1.5rem';
     card.style.transformStyle = 'preserve-3d';
     card.style.transition = 'all 0.8s ease';
 
@@ -121,7 +122,8 @@ function newCardBack() {
     cardBack.style.fontWeight = 'bold';
     cardBack.style.color = '#fff';
     cardBack.style.textShadow = '2px 2px 4px #000';
-    cardBack.style.fontSize = '1.6rem';
+    // turned this off to see how thechurchco's auto sizing system for .row-column p, h6 adjusts it
+    // cardBack.style.fontSize = '1.5rem';
     cardBack.style.display = 'flex'
     cardBack.style.flexDirection = 'column';
     cardBack.style.alignItems = 'center';
@@ -149,7 +151,7 @@ function newCardFront(element) {
     cardFront.style.width = '100%';
     cardFront.style.height = '100%';
     cardFront.style.backfaceVisibility = 'hidden';
-    cardFront.style.fontSize = '1.6rem';
+    cardFront.style.fontSize = '1.5rem';
     cardFront.style.display = 'flex'
     cardFront.style.flexDirection = 'column';
     cardFront.style.alignItems = 'center';
