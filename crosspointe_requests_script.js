@@ -56,7 +56,7 @@ function newCardContainer() {
     const cardContainer = document.createElement('div');
     cardContainer.classList.add('card-container');
     cardContainer.style.width = '100%';
-    cardContainer.style.height = '130px';
+    cardContainer.style.height = '282px';
     cardContainer.style.perspective = '1000px';
 
     /*
@@ -154,7 +154,6 @@ function newCardFront(element) {
     cardFront.style.flexDirection = 'column';
     cardFront.style.alignItems = 'center';
     cardFront.style.lineHeight = '1.7em';
-    cardFront.style.backgroundColor = 'blue';
 
     return cardFront;
 };
