@@ -154,6 +154,7 @@ function newCardFront(element) {
     cardFront.style.flexDirection = 'column';
     cardFront.style.alignItems = 'center';
     cardFront.style.lineHeight = '1.7em';
+    cardFront.style.backgroundColor = 'blue';
 
     return cardFront;
 };
