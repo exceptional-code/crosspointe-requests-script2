@@ -87,7 +87,7 @@ function newCard(element) {
         Create a basic card for a parent element and its children to be further
         modified later with a card back and a card front.
     */
-    const card = element;
+    const card = document.createElement('div');
     card.classList.add('card');
     card.style.position = 'absolute';
     card.style.width = '90%';
@@ -96,10 +96,9 @@ function newCard(element) {
     card.style.transformStyle = 'preserve-3d';
     card.style.transition = 'all 0.8s ease';
 
-    const cardFront = newCardFront(card);
+    const cardFront = newCardFront(element);
     const cardBack = newCardBack();
 
-    card.innerHTML = '';
     card.appendChild(cardFront);
     card.appendChild(cardBack);
 
@@ -132,13 +131,13 @@ function newCardBack() {
     return cardBack;
 };
 
-function newCardFront(card) {
+function newCardFront(element) {
     /*
         Create the front of the card that will hide the back of the card when
         the mouse is not hovering over the card.
     */
     const cardFront = document.createElement('div');
-    const childElements = card.cloneNode(true);
+    const childElements = element.cloneNode(true);
 
     while (childElements.firstChild) {
         cardFront.appendChild(childElements.firstChild);
@@ -172,9 +171,10 @@ function callVolunteers() {
     const timesDiv = document.getElementById('times');
     const containerDiv = timesDiv.getElementsByClassName('container')[0];
     const serviceTimesDiv = containerDiv.getElementsByClassName('service-times')[0];
+    const wednesdayNightDiv = serviceTimesDiv.getElementsByClassName('column-four')[2];
     const cardContainer = newCardContainer();
     const card = cardContainer.querySelector('.card');
-    serviceTimesDiv.appendChild(cardContainer);
+    wednesdayNightDiv.appendChild(cardContainer);
 
     /*
         SquareSpace Code Snippet 2
