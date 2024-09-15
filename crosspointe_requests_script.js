@@ -68,6 +68,7 @@ function newCardContainer() {
     const wednesdayNightDiv = serviceTimesDiv.getElementsByClassName('column-four')[2];
     const card = newCard(wednesdayNightDiv);
     cardContainer.appendChild(card);
+    cardContainer.style.fontSize = 'inherit';
     wednesdayNightDiv.innerHTML = '';
 
     /*
@@ -103,6 +104,7 @@ function newCard(element) {
 
     card.appendChild(cardFront);
     card.appendChild(cardBack);
+    card.style.fontSize = 'inherit';
 
     return card;
 };
@@ -124,6 +126,7 @@ function newCardBack() {
     cardBack.style.textShadow = '2px 2px 4px #000';
     // turned this off to see how thechurchco's auto sizing system for .row-column p, h6 adjusts it
     // cardBack.style.fontSize = '1.5rem';
+    cardBack.style.fontSize = 'inherit';
     cardBack.style.display = 'flex'
     cardBack.style.flexDirection = 'column';
     cardBack.style.alignItems = 'center';
@@ -151,7 +154,8 @@ function newCardFront(element) {
     cardFront.style.width = '100%';
     cardFront.style.height = '100%';
     cardFront.style.backfaceVisibility = 'hidden';
-    cardFront.style.fontSize = '1.5rem';
+    // cardFront.style.fontSize = '1.5rem';
+    cardFront.style.fontSize = 'inherit';
     cardFront.style.display = 'flex'
     cardFront.style.flexDirection = 'column';
     cardFront.style.alignItems = 'center';
