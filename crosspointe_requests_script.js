@@ -68,6 +68,7 @@ function newCardContainer() {
     const wednesdayNightDiv = serviceTimesDiv.getElementsByClassName('column-four')[2];
     const card = newCard(wednesdayNightDiv);
     cardContainer.appendChild(card);
+    wednesdayNightDiv.innerHTML = '';
 
     /*
         SquareSpace Code Snippet 1
