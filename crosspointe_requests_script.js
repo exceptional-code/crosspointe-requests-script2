@@ -90,9 +90,9 @@ function newCard(element) {
     */
     const card = document.createElement('div');
     card.classList.add('card');
-    card.style.position = 'absolute';
-    card.style.width = '90%';
-    card.style.height = '90%';
+    card.style.position = 'relative';
+    card.style.width = '100%';
+    card.style.height = '100%';
     card.style.transformStyle = 'preserve-3d';
     card.style.transition = 'all 0.8s ease';
 
