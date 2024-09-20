@@ -55,9 +55,6 @@ function newCardContainer() {
     */
     const cardContainer = document.createElement('div');
     cardContainer.classList.add('card-container');
-    cardContainer.style.width = '100%';
-    cardContainer.style.height = '282px';
-    cardContainer.style.perspective = '1000px';
 
     /*
         ChurchCo Code Snippet 1
@@ -69,6 +66,9 @@ function newCardContainer() {
     const card = newCard(wednesdayNightDiv);
     cardContainer.appendChild(card);
     wednesdayNightDiv.innerHTML = '';
+    cardContainer.style.width = '100%';
+    cardContainer.style.height = '282px';
+    cardContainer.style.perspective = '1000px';
 
     /*
         SquareSpace Code Snippet 1
@@ -90,17 +90,18 @@ function newCard(element) {
     */
     const card = document.createElement('div');
     card.classList.add('card');
-    card.style.position = 'relative';
-    card.style.width = '100%';
-    card.style.height = '100%';
-    card.style.transformStyle = 'preserve-3d';
-    card.style.transition = 'all 0.8s ease';
 
     const cardFront = newCardFront(element);
     const cardBack = newCardBack();
 
     card.appendChild(cardFront);
     card.appendChild(cardBack);
+
+    card.style.position = 'relative';
+    card.style.width = '100%';
+    card.style.height = '100%';
+    card.style.transformStyle = 'preserve-3d';
+    card.style.transition = 'all 0.8s ease';
 
     return card;
 };
@@ -112,6 +113,7 @@ function newCardBack() {
     */
     const cardBack = document.createElement('div');
     cardBack.classList.add('card-back');
+    cardBack.innerHTML = '<h6>Volunteer</h6>';
     cardBack.style.position = 'absolute';
     cardBack.style.pointerEvents = 'none';
     cardBack.style.width = '100%';
@@ -123,7 +125,6 @@ function newCardBack() {
     cardBack.style.flexDirection = 'column';
     cardBack.style.alignItems = 'center';
     cardBack.style.transform = 'rotateY(180deg)';
-    cardBack.innerHTML = '<h6>Volunteer</h6>';
 
     return cardBack;
 };
@@ -165,7 +166,7 @@ function callVolunteers() {
     */
     const timesDiv = document.getElementById('times');
     const containerDiv = timesDiv.getElementsByClassName('container')[0];
-    const serviceTimesDiv = containerDiv.getElementsByClassName('service-times')[0];
+    const serviceTimesDiv = containerDiv.querySelector('.service-times');
     const wednesdayNightDiv = serviceTimesDiv.getElementsByClassName('column-four')[2];
     const cardContainer = newCardContainer();
     const card = cardContainer.querySelector('.card');
