@@ -100,6 +100,7 @@ function newCard(element) {
     card.style.position = 'relative';
     card.style.width = '100%';
     card.style.height = '100%';
+    card.style.overflow = 'visible'
     card.style.transformStyle = 'preserve-3d';
     card.style.transition = 'all 0.8s ease';
 
@@ -120,10 +121,10 @@ function newCardBack() {
     cardBack.style.height = '100%';
     cardBack.style.backfaceVisibility = 'hidden';
     cardBack.style.color = '#fff';
-    cardBack.style.textShadow = '2px 2px 4px #000';
     cardBack.style.display = 'flex'
     cardBack.style.flexDirection = 'column';
     cardBack.style.alignItems = 'center';
+    cardBack.style.justifyContent = 'center';
     cardBack.style.transform = 'rotateY(180deg)';
 
     return cardBack;
