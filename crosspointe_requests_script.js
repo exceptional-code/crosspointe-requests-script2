@@ -114,7 +114,11 @@ function newCardBack() {
     */
     const cardBack = document.createElement('div');
     cardBack.classList.add('card-back');
-    cardBack.innerHTML = '<h6>Volunteer</h6>';
+    cardBack.innerHTML = `
+        <a href="https://crosspointetv.churchcenter.com/people/forms/777214" style="display: block; text-decoration: none; color: inherit; pointer-events: auto;">
+            <h6>Volunteer</h6>
+        </a>
+    `;
     cardBack.style.position = 'absolute';
     cardBack.style.pointerEvents = 'none';
     cardBack.style.width = '100%';
