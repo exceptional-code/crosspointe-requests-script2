@@ -32,7 +32,7 @@ async function searchForWednesday() {
         regex to see if any of the groups meet on Wednesday.
     */
     try {
-        const groups = await fetchResource(rootURL, '/groups');
+        const groups = await fetchResource(rootURL, '/api/groups');
 
         if (groups && groups.length > 0) {
             const schedules = groups.map((group) => {
