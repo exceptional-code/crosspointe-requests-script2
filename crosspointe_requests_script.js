@@ -1,4 +1,4 @@
-const rootURL = 'postgresql://admin:hEQRQvfk40pKfI8c4mmyfR96YCMn2ZsE@dpg-cs2bfg68ii6s739evlbg-a.oregon-postgres.render.com/crosspointe_db';
+const rootURL = 'https://data-caching-server.onrender.com';
 
 async function fetchResource(rootURL, association) {
     /*
@@ -34,18 +34,20 @@ async function searchForWednesday() {
     try {
         const groups = await fetchResource(rootURL, '/groups');
 
-        const schedules = groups.map((group) => {
-            return group.schedule;
-        });
-
-        // test code line:
-        console.log(schedules);
-
-        for (let schedule of schedules) {
-            if (schedule.match(/\b(wed(?:nesday|nesdays)?)\b/i)) {
-                return true;
+        if (groups && groups.length > 0) {
+            const schedules = groups.map((group) => {
+                return group.schedule;
+            });
+    
+            // test code line:
+            console.log(schedules);
+    
+            for (let schedule of schedules) {
+                if (schedule.match(/\b(wed(?:nesday|nesdays)?)\b/i)) {
+                    return true;
+                };
             };
-        };
+        }
 
         return false;
     } catch (error) {
@@ -86,7 +88,7 @@ function newCard(element) {
         modified later with a card back and a card front.
     */
     const card = document.createElement('div');
-    
+
     card.classList.add('card');
 
     const cardFront = newCardFront(element);
