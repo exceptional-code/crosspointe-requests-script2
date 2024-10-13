@@ -1,10 +1,12 @@
-const rootURL = ''; // replace with 'https://www.hostingservice.com/yourhostedserverURL'
+const rootURL = 'postgresql://admin:hEQRQvfk40pKfI8c4mmyfR96YCMn2ZsE@dpg-cs2bfg68ii6s739evlbg-a.oregon-postgres.render.com/crosspointe_db';
 
 async function fetchResource(rootURL, association) {
     /*
-        This generic fetch function retrieves any resource from the PCO database via
-        an url made up of a root url and an association endpoint, using CrossPointe's
-        personal access token.
+        This generic fetch function retrieves any resource from CrossPointe's database
+        by making a fetch request to the custom-built server storing CrossPointe's new
+        database on it. The url it tries is made up of a root url and an association
+        endpoint. On the server's end, it's periodically querying the PCO database to
+        keep its data updated so that whatever this request fetches is current.
     */
     const URL = rootURL + association;
 
@@ -15,7 +17,7 @@ async function fetchResource(rootURL, association) {
             }
         });
 
-        const result = response.json();
+        const result = await response.json();
 
         return result;
     } catch (error) {
@@ -25,9 +27,9 @@ async function fetchResource(rootURL, association) {
 
 async function searchForWednesday() {
     /*
-        This function fetches all the groups related to CrossPointe due to the way the personal access
-        token works. Then it extracts their schedules and searches the schedules with a backtracking-
-        avoidant regex to see if any of the groups meet on Wednesday.
+        This function fetches from the church database all the groups related to CrossPointe.
+        Then it extracts their schedules and searches the schedules with a backtracking-avoidant
+        regex to see if any of the groups meet on Wednesday.
     */
     try {
         const groups = await fetchResource(rootURL, '/groups');
@@ -35,6 +37,9 @@ async function searchForWednesday() {
         const schedules = groups.map((group) => {
             return group.schedule;
         });
+
+        // test code line:
+        console.log(schedules);
 
         for (let schedule of schedules) {
             if (schedule.match(/\b(wed(?:nesday|nesdays)?)\b/i)) {
@@ -54,6 +59,7 @@ function newCardContainer() {
         inside the parent container we just created.
     */
     const cardContainer = document.createElement('div');
+
     cardContainer.classList.add('card-container');
 
     /*
@@ -64,21 +70,12 @@ function newCardContainer() {
     const serviceTimesDiv = containerDiv.getElementsByClassName('service-times')[0];
     const wednesdayNightDiv = serviceTimesDiv.getElementsByClassName('column-four')[2];
     const card = newCard(wednesdayNightDiv);
+
     cardContainer.appendChild(card);
     wednesdayNightDiv.innerHTML = '';
     cardContainer.style.width = '100%';
     cardContainer.style.height = '282px';
     cardContainer.style.perspective = '1000px';
-
-    /*
-        SquareSpace Code Snippet 1
-    */
-    // const yuiDiv = document.getElementById('block-yui_3_17_2_1_1661889157130_2821');
-    // const worshipDiv = yuiDiv.querySelector('.sqs-block-content');
-    // const worshipInnerDiv = worshipDiv.querySelector('.sqs-html-content');
-    // const wednesdayWorshipDiv = worshipInnerDiv.querySelectorAll('h2')[3];
-    // const card = newCard(wednesdayWorshipDiv);
-    // cardContainer.appendChild(card);
 
     return cardContainer;
 }
@@ -89,6 +86,7 @@ function newCard(element) {
         modified later with a card back and a card front.
     */
     const card = document.createElement('div');
+    
     card.classList.add('card');
 
     const cardFront = newCardFront(element);
@@ -113,6 +111,7 @@ function newCardBack() {
         hide the card front.
     */
     const cardBack = document.createElement('div');
+
     cardBack.classList.add('card-back');
     cardBack.innerHTML = `
         <a href="https://crosspointetv.churchcenter.com/people/forms/777214" style="display: block; text-decoration: none; color: inherit; pointer-events: auto;">
@@ -175,17 +174,8 @@ function callVolunteers() {
     const wednesdayNightDiv = serviceTimesDiv.getElementsByClassName('column-four')[2];
     const cardContainer = newCardContainer();
     const card = cardContainer.querySelector('.card');
-    wednesdayNightDiv.appendChild(cardContainer);
 
-    /*
-        SquareSpace Code Snippet 2
-    */
-    // const yuiDiv = document.getElementById('block-yui_3_17_2_1_1661889157130_2821');
-    // const worshipDiv = yuiDiv.querySelector('.sqs-block-content');
-    // const worshipInnerDiv = worshipDiv.querySelector('.sqs-html-content');
-    // const cardContainer = newCardContainer();
-    // const card = cardContainer.querySelector('.card');
-    // worshipInnerDiv.appendChild(cardContainer);
+    wednesdayNightDiv.appendChild(cardContainer);
 
     cardContainer.addEventListener('mouseover', () => {
         card.style.transform = 'rotateY(180deg)';
